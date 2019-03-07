@@ -121,10 +121,13 @@ namespace SpriterDotNet
             {
                 SpriterObjectRef objectRef = keyA.ObjectRefs[i];
                 SpriterObject interpolated = GetObjectInfo(objectRef, animation, adjustedTime);
+                var timeline = animation.Timelines[objectRef.TimelineId];
+                interpolated.Name = timeline.Name;
+
                 if (boneInfos != null && objectRef.ParentId >= 0) interpolated.ApplyParentTransform(boneInfos[objectRef.ParentId]);
                 else if (parentInfo != null) interpolated.ApplyParentTransform(parentInfo);
 
-                AddSpatialData(interpolated, animation.Timelines[objectRef.TimelineId], animation.Entity.Spriter, deltaTime);
+                AddSpatialData(interpolated,timeline, animation.Entity.Spriter, deltaTime);
             }
 
             Pool.ReturnObject(boneInfos);

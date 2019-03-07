@@ -245,6 +245,8 @@ namespace SpriterDotNet
         [XmlAttribute("t")]
         public float T;
 
+        public string Name;
+
         public SpriterObject()
         {
             PivotX = float.NaN;
