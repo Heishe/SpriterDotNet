@@ -120,10 +120,12 @@ namespace SpriterDotNet
             for (int i = 0; i < keyA.ObjectRefs.Length; ++i)
             {
                 SpriterObjectRef objectRef = keyA.ObjectRefs[i];
-                SpriterObject interpolated = GetObjectInfo(objectRef, animation, adjustedTime);
                 var timeline = animation.Timelines[objectRef.TimelineId];
+                
+                SpriterObject interpolated = GetObjectInfo(objectRef, animation, adjustedTime);
+                
                 interpolated.Name = timeline.Name;
-
+                
                 if (boneInfos != null && objectRef.ParentId >= 0) interpolated.ApplyParentTransform(boneInfos[objectRef.ParentId]);
                 else if (parentInfo != null) interpolated.ApplyParentTransform(parentInfo);
 
